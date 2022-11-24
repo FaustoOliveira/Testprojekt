@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        img {
+            width: 100%;
+        }
+    </style>
+    <script>
+
+        let images = ['2.webp', '1.webp', '3.webp', '4.webp', '5.webp'];
+        let currentImage = 0;
+
+        function start() {
+            let millisecons = +document.getElementById('inputfield').value * 1000;
+
+
+            if (millisecons > 10000) {
+                alert('Bitte Kleinere Zahl eingeben');
+            } else {
+
+                if (millisecons < 1000) {
+                    alert('Bitte mindestens eine Sekunde als Zeit angeben!');
+                } else { // Start diashow
+                    showImage(currentImage);
+                    currentImage++;
+
+                    if (currentImage == 5) {
+                        currentImage = 0;
+                    }
+
+                    setTimeout(start, millisecons);
+                }
+            }
+        }
+
+
+
+        function showImage(i) {
+            document.getElementById('image').src = images[i];
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <input type="number" id="inputfield" placeholder="wie viele Sekunden?"> <button onclick="start()">Start</button>
+    <img id="image" src="./1.webp">
+
+</body>
+
+</html>

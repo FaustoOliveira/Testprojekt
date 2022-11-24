@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+    <script>
+        
+        let names = [];
+
+
+        function addNames(){
+            let list = document.getElementById('list');
+            list.innerHTML = '';
+            for (let i = 0; i < names.length; i++) {
+                let li = document.createElement('li');
+                li.innerHTML = names[i] + ' <a href="#" onclick="deleteItem(' + i + ')">x</a>';
+                list.appendChild(li);
+            }
+        }
+
+        function deleteItem(i) {
+            names.splice(i, 1);
+            addNames();
+        }
+
+        function addCurrentName(){
+            if (names.length < 5) {
+                let CurrentName = document.getElementById('new-name').value;
+                names.push(CurrentName);
+                document.getElementById('new-name').value = '';
+                addNames();
+            } else {
+                alert('Arbeite erstmal die anderen Aufgaben ab!');
+            }
+        }
+
+
+
+
+    </script>
+</head>
+<body onload="addNames()">
+    <h1>Aufgaben</h1>
+    <ul id="list"></ul>
+    
+
+    <input id="new-name" placeholder="Neue Aufgaben"><button onclick="addCurrentName()">Hinzufügen</button>
+    
+</body>
+</html>
